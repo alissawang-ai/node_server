@@ -18,12 +18,12 @@ app.use('/api/team', require('./routes/team'));
 schedule.scheduleJob('0 0 * * *', async () => {
   console.log('==== 开始每日自动结算 ====', moment().format('YYYY-MM-DD'));
 
-  const [teams] = await db.query('SELECT * FROM team WHERE status = 1');
-  for (const team of teams) {
+  const teams = await db.query('SELECT * FROM team WHERE status = 1');
+  for (const team of teams.rows) {
     const teamId = team.id;
     const deposit = parseFloat(team.deposit);
 
-    const [members] = await db.query(
+    const members = await db.query(
       'SELECT * FROM team_member WHERE team_id = $1 AND deposit_pay = 1',
       [teamId]
     );
@@ -31,7 +31,7 @@ schedule.scheduleJob('0 0 * * *', async () => {
     let totalPenalty = 0;
     const goodUsers = [];
 
-    for (const m of members) {
+    for (const m of members.rows) {
       if (m.today_status === 2) {
         totalPenalty += deposit;
       } else {
