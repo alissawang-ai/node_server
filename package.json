@@ -1,1 +1,11 @@
-
+{
+  "name": "phone_server",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "cors": "^2.8.5",
+    "node-schedule": "^2.1.1",
+    "moment": "^2.29.4"
+  }
+}
