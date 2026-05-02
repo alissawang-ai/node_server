@@ -5,8 +5,7 @@ const pool = new Pool({
   port: 5432,
   database: 'phone_db_vec9',
   user: 'phone_db_vec9_user',
-  password: 'pe9aMFzfhBgCd8GBbKesiiiTnT0ztYSr
-',
+  password: 'pe9aMFzfhBgCd8GBbKesiiiTnT0ztYSr',
   ssl: {
     rejectUnauthorized: false
   }
